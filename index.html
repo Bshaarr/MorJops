@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MorJops — بوابة الوظائف الحكومية السورية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#1B4332;
+  --primary-light:#2D6A4F;
+  --primary-pale:#D8F3DC;
+  --gold:#B7860C;
+  --gold-light:#F9C74F;
+  --gold-pale:#FFF9E6;
+  --text:#1A1A1A;
+  --text2:#4A5568;
+  --text3:#718096;
+  --surface:#FFFFFF;
+  --surface2:#F7F9F7;
+  --surface3:#EDF5EE;
+  --border:#D4E6D6;
+  --radius:12px;
+  --success:#2E7D32;
+  --danger:#C62828;
+}
+body{font-family:'Cairo',sans-serif;background:var(--surface2);color:var(--text);min-height:100vh;direction:rtl}
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announce{
+  background:var(--gold-pale);
+  border-bottom:2px solid var(--gold-light);
+  padding:10px 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-size:13px;
+  color:var(--gold);
+}
+.announce b{font-weight:700}
+.announce-close{
+  margin-right:auto;
+  cursor:pointer;
+  color:var(--gold);
+  font-weight:700;
+  font-size:18px;
+  line-height:1;
+  border:none;
+  background:none;
+  font-family:'Cairo',sans-serif;
+}
+
+/* ===== NAVIGATION ===== */
+nav{
+  background:var(--primary);
+  padding:0 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 20px rgba(27,67,50,0.3);
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer}
+.logo-icon{
+  width:36px;height:36px;
+  background:var(--gold-light);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:900;color:var(--primary);
+}
+.logo-text{
+  font-family:'Amiri',serif;
+  font-size:22px;font-weight:700;
+  color:#fff;letter-spacing:-0.5px;
+}
+.logo-sub{
+  font-size:10px;color:rgba(255,255,255,0.6);
+  display:block;margin-top:-4px;
+  font-family:'Cairo',sans-serif;font-weight:400;
+}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav ul a{
+  color:rgba(255,255,255,0.85);
+  text-decoration:none;font-size:14px;font-weight:500;
+  transition:color 0.2s;cursor:pointer;
+}
+nav ul a:hover{color:var(--gold-light)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.nav-login{
+  color:rgba(255,255,255,0.8);
+  text-decoration:none;font-size:14px;cursor:pointer;
+}
+.nav-cta{
+  background:var(--gold-light);color:var(--primary);
+  padding:8px 20px;border-radius:8px;
+  font-weight:600;font-size:13px;
+  text-decoration:none;transition:all 0.2s;cursor:pointer;
+}
+.nav-cta:hover{background:#fff;color:var(--primary)}
+
+/* ===== HERO ===== */
+.hero{
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 60%,#40916C 100%);
+  padding:80px 2rem 60px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity:0.1;
+}
+.hero-content{position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;padding:6px 16px;border-radius:100px;
+  font-size:13px;margin-bottom:24px;
+  backdrop-filter:blur(4px);
+}
+.badge-dot{
+  width:8px;height:8px;
+  background:var(--gold-light);border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.6;transform:scale(0.8)}
+}
+.hero h1{
+  font-family:'Amiri',serif;
+  font-size:52px;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:16px;
+}
+.hero h1 span{color:var(--gold-light)}
+.hero p{
+  font-size:17px;color:rgba(255,255,255,0.8);
+  max-width:600px;margin:0 auto 36px;line-height:1.8;
+}
+
+/* ===== SEARCH BOX ===== */
+.search-box{
+  background:#fff;border-radius:16px;padding:8px;
+  display:flex;gap:8px;
+  max-width:700px;margin:0 auto;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+.search-box input{
+  flex:1;border:none;outline:none;
+  padding:12px 16px;font-size:15px;
+  font-family:'Cairo',sans-serif;color:var(--text);
+  background:transparent;
+}
+.search-box select{
+  border:none;outline:none;
+  padding:12px 16px;font-size:14px;
+  font-family:'Cairo',sans-serif;color:var(--text2);
+  background:var(--surface2);border-radius:10px;
+  cursor:pointer;min-width:140px;
+}
+.search-btn{
+  background:var(--primary);color:#fff;border:none;
+  padding:12px 28px;border-radius:10px;
+  font-family:'Cairo',sans-serif;font-size:15px;font-weight:600;
+  cursor:pointer;transition:all 0.2s;white-space:nowrap;
+}
+.search-btn:hover{background:var(--primary-light)}
+
+/* ===== HERO STATS ===== */
+.hero-stats{
+  display:flex;justify-content:center;gap:3rem;margin-top:48px;flex-wrap:wrap;
+}
+.stat{color:#fff;text-align:center}
+.stat-num{
+  font-size:32px;font-weight:700;
+  color:var(--gold-light);display:block;line-height:1;
+}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.65);margin-top:4px}
+
+/* ===== FILTERS BAR ===== */
+.filters-bar{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:12px 2rem;
+  display:flex;align-items:center;gap:12px;
+  overflow-x:auto;
+}
+.filter-label{font-size:13px;color:var(--text3);font-weight:500;white-space:nowrap}
+.filter-chip{
+  padding:7px 16px;border-radius:100px;
+  font-size:13px;font-family:'Cairo',sans-serif;font-weight:500;
+  border:1.5px solid var(--border);background:transparent;
+  cursor:pointer;color:var(--text2);transition:all 0.2s;white-space:nowrap;
+}
+.filter-chip.active,.filter-chip:hover{
+  background:var(--primary);color:#fff;border-color:var(--primary);
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main{
+  max-width:1200px;margin:0 auto;padding:2rem;
+  display:grid;grid-template-columns:280px 1fr;gap:2rem;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.25rem;margin-bottom:1rem;
+}
+.sidebar-title{
+  font-size:14px;font-weight:700;color:var(--text);
+  margin-bottom:1rem;padding-bottom:10px;
+  border-bottom:2px solid var(--primary-pale);
+}
+.sidebar-title span{color:var(--primary)}
+.filter-group{margin-bottom:1.5rem}
+.filter-group-name{
+  font-size:12px;font-weight:600;color:var(--text3);
+  text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;
+}
+.check-item{
+  display:flex;align-items:center;gap:10px;
+  padding:6px 0;cursor:pointer;transition:all 0.15s;
+}
+.check-item:hover .check-label{color:var(--primary)}
+.check-box{
+  width:18px;height:18px;
+  border:2px solid var(--border);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;flex-shrink:0;
+}
+.check-box.checked{background:var(--primary);border-color:var(--primary)}
+.check-box.checked::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
+.check-label{font-size:14px;color:var(--text2);flex:1}
+.check-count{
+  font-size:12px;color:var(--text3);
+  background:var(--surface2);padding:2px 8px;border-radius:100px;
+}
+
+/* ===== ORG BADGES ===== */
+.org-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;padding:8px 12px;
+  margin:4px;cursor:pointer;transition:all 0.2s;
+  font-size:13px;color:var(--text2);
+}
+.org-badge:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-pale)}
+.org-badge.active{background:var(--primary-pale);border-color:var(--primary);color:var(--primary);font-weight:600}
+
+/* ===== NEWSLETTER ===== */
+.newsletter{
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  border-radius:16px;padding:2rem;text-align:center;margin-top:1rem;
+}
+.newsletter h3{color:#fff;font-size:18px;font-weight:700;margin-bottom:8px}
+.newsletter p{color:rgba(255,255,255,0.75);font-size:14px;margin-bottom:16px;line-height:1.6}
+.nl-input{display:flex;gap:8px}
+.nl-input input{
+  flex:1;border:none;outline:none;
+  padding:10px 14px;border-radius:8px;
+  font-family:'Cairo',sans-serif;font-size:14px;
+  background:rgba(255,255,255,0.15);color:#fff;
+}
+.nl-input input::placeholder{color:rgba(255,255,255,0.5)}
+.nl-btn{
+  background:var(--gold-light);color:var(--primary);
+  border:none;padding:10px 16px;border-radius:8px;
+  font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;cursor:pointer;
+}
+
+/* ===== JOBS SECTION ===== */
+.jobs-header{
+  display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:1.25rem;
+  flex-wrap:wrap;gap:1rem;
+}
+.jobs-count{font-size:15px;color:var(--text2);font-weight:500}
+.jobs-count b{color:var(--primary);font-size:18px}
+.sort-select{
+  border:1px solid var(--border);padding:8px 14px;border-radius:8px;
+  font-family:'Cairo',sans-serif;font-size:13px;color:var(--text2);
+  background:var(--surface);cursor:pointer;outline:none;
+}
+
+/* ===== JOB CARD ===== */
+.job-card{
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.25rem;margin-bottom:1rem;
+  cursor:pointer;transition:all 0.2s;
+  position:relative;overflow:hidden;
+}
+.job-card::before{
+  content:'';position:absolute;right:0;top:0;bottom:0;width:4px;
+  background:transparent;transition:all 0.2s;
+  border-radius:0 var(--radius) var(--radius) 0;
+}
+.job-card:hover{
+  border-color:var(--primary-light);
+  transform:translateX(-2px);
+  box-shadow:0 4px 20px rgba(27,67,50,0.08);
+}
+.job-card:hover::before{background:var(--primary)}
+.job-card.featured{
+  border-color:var(--gold);
+  background:linear-gradient(135deg,#fff 0%,#FFFDF0 100%);
+}
+.job-card.featured::before{background:var(--gold)}
+.card-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
+.org-logo{
+  width:48px;height:48px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;border:1px solid var(--border);
+}
+.job-info{flex:1}
+.job-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3}
+.job-org{font-size:14px;color:var(--primary);font-weight:600}
+.job-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px}
+.job-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{
+  font-size:12px;padding:4px 12px;border-radius:100px;
+  font-weight:500;display:flex;align-items:center;gap:4px;
+}
+.tag-gov{background:#E3F2F9;color:#1565C0}
+.tag-org{background:#F3E5F5;color:#7B1FA2}
+.tag-location{background:var(--surface3);color:var(--primary-light)}
+.tag-type{background:var(--gold-pale);color:var(--gold)}
+.tag-deadline{background:#FFEBEE;color:var(--danger)}
+.tag-hybrid{background:#E8F5E9;color:var(--success)}
+.card-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border);
+  flex-wrap:wrap;gap:1rem;
+}
+.card-meta{display:flex;gap:16px;flex-wrap:wrap}
+.meta-item{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:4px}
+.featured-badge{
+  background:var(--gold);color:#fff;
+  font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:100px;
+}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap}
+.apply-btn{
+  background:var(--primary);color:#fff;border:none;
+  padding:8px 20px;border-radius:8px;
+  font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all 0.2s;
+}
+.apply-btn:hover{background:var(--primary-light)}
+.save-btn{
+  background:transparent;color:var(--primary);
+  border:1.5px solid var(--primary);
+  padding:8px 20px;border-radius:8px;
+  font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all 0.2s;
+}
+.save-btn:hover{background:var(--primary-pale)}
+.save-btn.saved{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ===== PAGINATION ===== */
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:2rem;flex-wrap:wrap}
+.page-btn{
+  min-width:36px;height:36px;padding:0 10px;
+  border:1.5px solid var(--border);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-family:'Cairo',sans-serif;font-size:14px;font-weight:500;
+  color:var(--text2);background:var(--surface);transition:all 0.2s;
+}
+.page-btn:hover,.page-btn.active{
+  background:var(--primary);color:#fff;border-color:var(--primary);
+}
+
+/* ===== MODAL ===== */
+.modal{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.5);z-index:200;
+  justify-content:center;align-items:center;padding:2rem;
+}
+.modal.active{display:flex}
+.modal-content{
+  background:#fff;border-radius:16px;max-width:500px;width:100%;
+  padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  max-height:90vh;overflow-y:auto;
+}
+.modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:1.5rem;
+}
+.modal-header h2{font-size:20px;color:var(--text)}
+.modal-close{
+  background:none;border:none;font-size:24px;
+  color:var(--text3);cursor:pointer;
+}
+.form-group{margin-bottom:1rem}
+.form-group label{
+  display:block;font-size:14px;font-weight:600;
+  color:var(--text);margin-bottom:0.5rem;
+}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);
+  border-radius:8px;font-family:'Cairo',sans-serif;
+  font-size:14px;color:var(--text);
+}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-actions{
+  display:flex;gap:10px;margin-top:2rem;justify-content:flex-end;
+}
+.form-actions button{
+  padding:10px 20px;border-radius:8px;border:none;
+  font-family:'Cairo',sans-serif;font-weight:600;cursor:pointer;
+}
+.btn-submit{background:var(--primary);color:#fff}
+.btn-submit:hover{background:var(--primary-light)}
+.btn-cancel{background:var(--surface2);color:var(--text)}
+.btn-cancel:hover{background:var(--border)}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--primary);color:rgba(255,255,255,0.8);
+  padding:3rem 2rem 1.5rem;margin-top:3rem;
+}
+.footer-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;margin-bottom:2rem;
+}
+.footer-brand-text{
+  font-family:'Amiri',serif;
+  font-size:26px;color:#fff;font-weight:700;
+  display:block;margin-bottom:10px;
+}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7}
+.footer-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:12px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul a{
+  color:rgba(255,255,255,0.6);text-decoration:none;
+  font-size:13px;transition:color 0.2s;cursor:pointer;
+}
+.footer-col ul a:hover{color:var(--gold-light)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:1.5rem;text-align:center;
+  font-size:12px;color:rgba(255,255,255,0.4);
+  max-width:1200px;margin:0 auto;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state{
+  text-align:center;padding:3rem 2rem;
+}
+.empty-state svg{width:120px;height:120px;margin-bottom:1rem;opacity:0.3}
+.empty-state h3{font-size:18px;color:var(--text);margin-bottom:0.5rem}
+.empty-state p{color:var(--text2);font-size:14px}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .main{grid-template-columns:1fr}
+  aside{display:none}
+  .hero h1{font-size:36px}
+  .search-box{flex-wrap:wrap}
+  .search-box select{min-width:100%;border-radius:10px}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  nav ul{display:none}
+}
+@media(max-width:600px){
+  .hero{padding:50px 1rem 40px}
+  .main{padding:1rem}
+  .footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .card-bottom{flex-direction:column;align-items:flex-start}
+  .card-actions{width:100%}
+  .card-actions button{flex:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce" id="announce-bar">
+  <span>🌟</span>
+  <b>جديد:</b> تم إضافة 47 وظيفة جديدة من وزارة الصحة والتنمية الاجتماعية اليوم
+  <button class="announce-close" onclick="closeAnnounce()">×</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="logo" onclick="goHome()">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MorJops</span>
+      <span class="logo-sub">بوابة الوظائف الحكومية السورية</span>
+    </div>
+  </a>
+  <ul>
+    <li><a onclick="goHome()">الوظائف</a></li>
+    <li><a onclick="showSection('organizations')">الوزارات</a></li>
+    <li><a onclick="showSection('about')">عن المنصة</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="nav-login" onclick="openLoginModal()">تسجيل الدخول</a>
+    <a class="nav-cta" onclick="openRegisterModal()">إنشاء حساب</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      منصة موثوقة لنشر الوظائف الرسمية
+    </div>
+    <h1>ابحث عن <span>وظيفتك</span><br>في المؤسسات السورية</h1>
+    <p>نجمع أحدث الفرص الوظيفية من وزارة التنمية الاجتماعية والمنظمات الحكومية والدولية العاملة في سوريا في منصة واحدة آمنة وموثوقة</p>
+
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="ابحث عن مسمى وظيفي، مهارة، أو منظمة...">
+      <select id="location-select">
+        <option>كل المحافظات</option>
+        <option>دمشق</option>
+        <option>حلب</option>
+        <option>حمص</option>
+        <option>اللاذقية</option>
+        <option>طرطوس</option>
+        <option>إدلب</option>
+        <option>درعا</option>
+        <option>دير الزور</option>
+        <option>الحسكة</option>
+        <option>الرقة</option>
+        <option>السويداء</option>
+        <option>القنيطرة</option>
+        <option>ريف دمشق</option>
+      </select>
+      <button class="search-btn" onclick="performSearch()">🔍 بحث</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" id="total-jobs">1,240</span>
+        <span class="stat-label">وظيفة متاحة</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">86</span>
+        <span class="stat-label">جهة حكومية</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">124</span>
+        <span class="stat-label">منظمة دولية</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">38K</span>
+        <span class="stat-label">مستخدم نشط</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS BAR -->
+<div class="filters-bar">
+  <span class="filter-label">تصفية سريعة:</span>
+  <button class="filter-chip active" onclick="filterJobs('all')">الكل</button>
+  <button class="filter-chip" onclick="filterJobs('government')">وزارات حكومية</button>
+  <button class="filter-chip" onclick="filterJobs('un')">أمم متحدة</button>
+  <button class="filter-chip" onclick="filterJobs('international')">منظمات دولية</button>
+  <button class="filter-chip" onclick="filterJobs('fulltime')">دوام كامل</button>
+  <button class="filter-chip" onclick="filterJobs('parttime')">دوام جزئي</button>
+  <button class="filter-chip" onclick="filterJobs('remote')">عن بُعد</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-card">
+      <div class="sidebar-title">تصفية <span>النتائج</span></div>
+
+      <div class="filter-group">
+        <div class="filter-group-name">نوع الجهة</div>
+        <div class="check-item" onclick="toggleFilter(this, 'type', 'government')">
+          <div class="check-box checked"></div>
+          <span class="check-label">وزارات حكومية</span>
+          <span class="check-count">342</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'type', 'un')">
+          <div class="check-box checked"></div>
+          <span class="check-label">منظمات أممية</span>
+          <span class="check-count">187</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'type', 'international')">
+          <div class="check-box"></div>
+          <span class="check-label">منظمات دولية</span>
+          <span class="check-count">431</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'type', 'local')">
+          <div class="check-box"></div>
+          <span class="check-label">منظمات محلية</span>
+          <span class="check-count">280</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-name">نوع التوظيف</div>
+        <div class="check-item" onclick="toggleFilter(this, 'employment', 'fulltime')">
+          <div class="check-box checked"></div>
+          <span class="check-label">دوام كامل</span>
+          <span class="check-count">689</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'employment', 'parttime')">
+          <div class="check-box"></div>
+          <span class="check-label">دوام جزئي</span>
+          <span class="check-count">198</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'employment', 'contract')">
+          <div class="check-box"></div>
+          <span class="check-label">عقد مؤقت</span>
+          <span class="check-count">256</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'employment', 'remote')">
+          <div class="check-box"></div>
+          <span class="check-label">عن بُعد</span>
+          <span class="check-count">97</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-name">المحافظة</div>
+        <div class="check-item" onclick="toggleFilter(this, 'location', 'damascus')">
+          <div class="check-box checked"></div>
+          <span class="check-label">دمشق</span>
+          <span class="check-count">412</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'location', 'aleppo')">
+          <div class="check-box"></div>
+          <span class="check-label">حلب</span>
+          <span class="check-count">287</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'location', 'homs')">
+          <div class="check-box"></div>
+          <span class="check-label">حمص</span>
+          <span class="check-count">143</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'location', 'latakia')">
+          <div class="check-box"></div>
+          <span class="check-label">اللاذقية</span>
+          <span class="check-count">98</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'location', 'idleb')">
+          <div class="check-box"></div>
+          <span class="check-label">إدلب</span>
+          <span class="check-count">76</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'location', 'daraa')">
+          <div class="check-box"></div>
+          <span class="check-label">درعا</span>
+          <span class="check-count">54</span>
+        </div>
+      </div>
+
+      <div class="filter-group" style="margin-bottom:0">
+        <div class="filter-group-name">المؤهل العلمي</div>
+        <div class="check-item" onclick="toggleFilter(this, 'qualification', 'diploma')">
+          <div class="check-box"></div>
+          <span class="check-label">دبلوم فأقل</span>
+          <span class="check-count">203</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'qualification', 'bachelor')">
+          <div class="check-box checked"></div>
+          <span class="check-label">بكالوريوس</span>
+          <span class="check-count">712</span>
+        </div>
+        <div class="check-item" onclick="toggleFilter(this, 'qualification', 'master')">
+          <div class="check-box"></div>
+          <span class="check-label">ماجستير فأعلى</span>
+          <span class="check-count">325</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">الجهات <span>المنضمة</span></div>
+      <div style="display:flex;flex-wrap:wrap;margin:-4px">
+        <div class="org-badge active" onclick="this.classList.toggle('active')"><span>🏛️</span>وزارة التنمية</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>🌍</span>UNICEF</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>🤝</span>UNDP</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>🏥</span>WHO</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>🌾</span>WFP</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>🏫</span>UNESCO</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>🆘</span>UNHCR</div>
+        <div class="org-badge" onclick="this.classList.toggle('active')"><span>❤️</span>ICRC</div>
+      </div>
+    </div>
+
+    <div class="newsletter">
+      <h3>🔔 تنبيهات الوظائف</h3>
+      <p>احصل على أحدث الوظائف مباشرة في بريدك الإلكتروني</p>
+      <div class="nl-input">
+        <input type="email" placeholder="بريدك الإلكتر��ني" id="newsletter-email">
+        <button class="nl-btn" onclick="subscribeNewsletter()">اشترك</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- JOBS LIST -->
+  <main id="jobs-container">
+    <div class="jobs-header">
+      <div class="jobs-count">عرض <b id="filtered-count">1,240</b> وظيفة متاحة</div>
+      <select class="sort-select" onchange="sortJobs(this.value)">
+        <option value="newest">الأحدث أولاً</option>
+        <option value="salary">الأعلى رواتباً</option>
+        <option value="deadline">ينتهي قريباً</option>
+        <option value="views">الأكثر مشاهدة</option>
+      </select>
+    </div>
+    <div id="jobs-list"></div>
+  </main>
+</div>
+
+<!-- MODALS -->
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>تسجيل الدخول</h2>
+      <button class="modal-close" onclick="closeModal('loginModal')">×</button>
+    </div>
+    <div class="form-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" placeholder="example@example.com">
+    </div>
+    <div class="form-group">
+      <label>كلمة المرور</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeModal('loginModal')">إلغاء</button>
+      <button class="btn-submit" onclick="submitLogin()">دخول</button>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal" id="registerModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>إنشاء حساب</h2>
+      <button class="modal-close" onclick="closeModal('registerModal')">×</button>
+    </div>
+    <div class="form-group">
+      <label>الاسم الكامل</label>
+      <input type="text" placeholder="محمد أحمد">
+    </div>
+    <div class="form-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" placeholder="example@example.com">
+    </div>
+    <div class="form-group">
+      <label>كلمة المرور</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+    <div class="form-group">
+      <label>تأكيد كلمة المرور</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeModal('registerModal')">إلغاء</button>
+      <button class="btn-submit" onclick="submitRegister()">إنشاء الحساب</button>
+    </div>
+  </div>
+</div>
+
+<!-- APPLY MODAL -->
+<div class="modal" id="applyModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>تقديم طلب للوظيفة</h2>
+      <button class="modal-close" onclick="closeModal('applyModal')">×</button>
+    </div>
+    <div class="form-group">
+      <label>الاسم الكامل</label>
+      <input type="text" placeholder="محمد أحمد" id="apply-name">
+    </div>
+    <div class="form-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" placeholder="example@example.com" id="apply-email">
+    </div>
+    <div class="form-group">
+      <label>رقم الهاتف</label>
+      <input type="tel" placeholder="+963 9XX XXX XXX" id="apply-phone">
+    </div>
+    <div class="form-group">
+      <label>الملف الشخصي CV</label>
+      <input type="file" accept=".pdf,.doc,.docx" id="apply-cv">
+    </div>
+    <div class="form-group">
+      <label>رسالة التغطية</label>
+      <textarea placeholder="أخبرنا عن نفسك والسبب وراء اهتمامك بهذه الوظيفة..." id="apply-message"></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeModal('applyModal')">إلغاء</button>
+      <button class="btn-submit" onclick="submitApplication()">تقديم الطلب</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-brand-text">MorJops</span>
+      <p>بوابة الوظائف الحكومية السورية — نجمع الفرص الوظيفية من الوزارات والمنظمات الدولية والمحلية في سوريا في منصة واحدة آمنة وموثوقة وسهلة الاستخدام</p>
+    </div>
+    <div class="footer-col">
+      <h4>استكشاف</h4>
+      <ul>
+        <li><a onclick="goHome()">كل الوظائف</a></li>
+        <li><a onclick="filterJobs('government')">وظائف الوزارات</a></li>
+        <li><a onclick="filterJobs('un')">منظمات أممية</a></li>
+        <li><a onclick="filterJobs('remote')">وظائف عن بُعد</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>الجهات</h4>
+      <ul>
+        <li><a>وزارة التنمية</a></li>
+        <li><a>UNDP سوريا</a></li>
+        <li><a>UNICEF سوريا</a></li>
+        <li><a>WFP سوريا</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>المنصة</h4>
+      <ul>
+        <li><a onclick="showSection('about')">عن MorJops</a></li>
+        <li><a>كيف تعمل؟</a></li>
+        <li><a>تواصل معنا</a></li>
+        <li><a>سياسة الخصوصية</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 MorJops — جميع الحقوق محفوظة · صُنع بـ ❤️ لخدمة الكوادر السورية
+  </div>
+</footer>
+
+<script>
+// ========== DATA ==========
+const jobsDatabase = [
+  {
+    id: 1,
+    title: 'أخصائي برامج — التعليم والتنمية',
+    organization: 'برنامج الأمم المتحدة الإنمائي UNDP — سوريا',
+    logo: '🌍',
+    background: '#E3F9F5',
+    description: 'نبحث عن متخصص في برامج التنمية للانضمام إلى فريقنا في دمشق. المرشح المثالي يمتلك خبرة لا تقل عن 3 سنوات في مجالات التنمية المستدامة والبرامج الاجتماعية.',
+    type: 'un',
+    location: 'دمشق',
+    employment: 'fulltime',
+    qualification: 'bachelor',
+    salary: 'راتب تنافسي',
+    deadline: '30 مايو',
+    views: 1240,
+    tags: ['🏢 منظمة أممية', '📍 دمشق', '⏰ دوام كامل', '📅 ينتهي 30 مايو'],
+    featured: true,
+    posted: 'منذ يومين',
+    meta: ['💰 راتب تنافسي', '👁️ 1,240 مشاهدة', '📋 بكالوريوس+']
+  },
+  {
+    id: 2,
+    title: 'مهندس مدني — مشاريع البنية التحتية',
+    organization: 'وزارة التنمية الاجتماعية والعمل — سوريا',
+    logo: '🏛️',
+    background: '#E8F5E9',
+    description: 'تحتاج الوزارة إلى مهندس مدني متخصص في مشاريع البنية التحتية. يجب أن يمتلك خبرة لا تقل عن 3 سنوات في إدارة المشاريع والتصميم الهندسي.',
+    type: 'government',
+    location: 'حلب',
+    employment: 'fulltime',
+    qualification: 'bachelor',
+    salary: '$1000-1400',
+    deadline: '15 يونيو',
+    views: 876,
+    tags: ['🏛️ حكومي', '📍 حلب', '⏰ دوام كامل', '📅 ينتهي 15 يونيو'],
+    featured: false,
+    posted: 'منذ 3 أيام',
+    meta: ['📋 بكالوريوس هندسة', '👁️ 876 مشاهدة', '🗓️ خبرة 3 سنوات']
+  },
+  {
+    id: 3,
+    title: 'منسق لوجستي ميداني',
+    organization: 'برنامج الغذاء العالمي WFP — سوريا',
+    logo: '🌾',
+    background: '#FFF3E0',
+    description: 'يبحث البرنامج عن منسق لوجستي ميداني للعمل في منطقة حمص. المرشح المثالي يمتلك خبرة في إدارة الإمدادات والعمليات اللوجستية.',
+    type: 'un',
+    location: 'حمص',
+    employment: 'contract',
+    qualification: 'diploma',
+    salary: '$800–1200',
+    deadline: '10 يونيو',
+    views: 2103,
+    tags: ['🏢 أممي', '📍 حمص', '📄 عقد مؤقت', '📅 ينتهي 10 يونيو'],
+    featured: false,
+    posted: 'منذ يوم',
+    meta: ['💰 $800–1200/شهر', '👁️ 2,103 مشاهدة', '📋 دبلوم+']
+  },
+  {
+    id: 4,
+    title: 'ممرض/ممرضة — الصحة النفسية والدعم النفسي',
+    organization: 'اللجنة الدولية للصليب الأحمر ICRC',
+    logo: '❤️',
+    background: '#FCE4EC',
+    description: 'تبحث اللجنة الدولية للصليب الأحمر عن ممرض/ممرضة متخصص في الصحة النفسية والدعم النفسي الاجتماعي. الخبرة في العمل الإنساني مهمة.',
+    type: 'international',
+    location: 'إدلب',
+    employment: 'fulltime',
+    qualification: 'bachelor',
+    salary: 'راتب تنافسي',
+    deadline: '5 يونيو',
+    views: 1567,
+    tags: ['🏢 إنساني', '📍 إدلب', '⏰ دوام كامل', '📅 ينتهي 5 يونيو'],
+    featured: false,
+    posted: 'ينتهي قريباً',
+    meta: ['📋 تمريض/نفسية', '👁️ 1,567 مشاهدة', '🗓️ خبرة 2 سنة']
+  },
+  {
+    id: 5,
+    title: 'مسؤول تعليم — مناهج التعلم عن بُعد',
+    organization: 'منظمة اليونيسف UNICEF — سوريا',
+    logo: '🏫',
+    background: '#E8EAF6',
+    description: 'تبحث اليونيسف عن متخصص في التعليم لتطوير مناهج التعلم عن بُعد. يجب أن يمتلك ماجستير في التعليم وخبرة في التكنولوجيا التعليمية.',
+    type: 'un',
+    location: 'دمشق',
+    employment: 'fulltime',
+    qualification: 'master',
+    salary: '$1500+',
+    deadline: '20 يونيو',
+    views: 3240,
+    tags: ['🏢 أممي', '📍 دمشق / عن بُعد', '💻 هجين', '📅 ينتهي 20 يونيو'],
+    featured: false,
+    posted: 'منذ 5 أيام',
+    meta: ['💰 $1500+/شهر', '👁️ 3,240 مشاهدة', '📋 ماجستير تعليم']
+  },
+  {
+    id: 6,
+    title: 'طبيب طوارئ ميداني',
+    organization: 'منظمة الصحة العالمية WHO — سوريا',
+    logo: '🏥',
+    background: '#E1F5FE',
+    description: 'تبحث منظمة الصحة العالمية عن طبيب متخصص في الطوارئ للعمل الميداني. الخبرة في العمل في بيئات الطوارئ والأزمات ضرورية.',
+    type: 'un',
+    location: 'اللاذقية',
+    employment: 'fulltime',
+    qualification: 'master',
+    salary: '$2000+',
+    deadline: '25 يونيو',
+    views: 987,
+    tags: ['🏢 أممي', '📍 اللاذقية', '⏰ دوام كامل', '📅 ينتهي 25 يونيو'],
+    featured: false,
+    posted: 'اليوم',
+    meta: ['📋 شهادة طب', '👁️ 987 مشاهدة', '🗓️ خبرة 5 سنوات']
+  }
+];
+
+let filteredJobs = [...jobsDatabase];
+let currentFilters = {
+  type: ['government', 'un'],
+  employment: ['fulltime'],
+  location: ['damascus'],
+  qualification: ['bachelor']
+};
+let savedJobs = [];
+
+// ========== FUNCTIONS ==========
+
+function closeAnnounce() {
+  document.getElementById('announce-bar').style.display = 'none';
+}
+
+function setActiveChip(el) {
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function toggleFilter(el, filterType, value) {
+  const box = el.querySelector('.check-box');
+  box.classList.toggle('checked');
+  
+  if (!currentFilters[filterType]) currentFilters[filterType] = [];
+  
+  if (box.classList.contains('checked')) {
+    if (!currentFilters[filterType].includes(value)) {
+      currentFilters[filterType].push(value);
+    }
+  } else {
+    currentFilters[filterType] = currentFilters[filterType].filter(v => v !== value);
+  }
+  
+  applyFilters();
+}
+
+function applyFilters() {
+  filteredJobs = jobsDatabase.filter(job => {
+    if (currentFilters.type && currentFilters.type.length > 0) {
+      if (!currentFilters.type.includes(job.type)) return false;
+    }
+    if (currentFilters.employment && currentFilters.employment.length > 0) {
+      if (!currentFilters.employment.includes(job.employment)) return false;
+    }
+    if (currentFilters.location && currentFilters.location.length > 0) {
+      if (!currentFilters.location.includes(job.location.toLowerCase())) return false;
+    }
+    if (currentFilters.qualification && currentFilters.qualification.length > 0) {
+      if (!currentFilters.qualification.includes(job.qualification)) return false;
+    }
+    return true;
+  });
+  
+  renderJobs();
+}
+
+function renderJobs() {
+  const container = document.getElementById('jobs-list');
+  document.getElementById('filtered-count').textContent = filteredJobs.length;
+  
+  if (filteredJobs.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <h3>لم يتم العثور على وظائف</h3>
+        <p>حاول تغيير معايير البحث والتصفية</p>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = filteredJobs.map(job => {
+    const isSaved = savedJobs.some(j => j.id === job.id);
+    return `
+      <div class="job-card ${job.featured ? 'featured' : ''}">
+        ${job.featured ? `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><span class="featured-badge">⭐ وظيفة مميزة</span><span style="font-size:12px;color:var(--text3)">${job.posted}</span></div>` : `<div style="text-align:right;margin-bottom:10px"><span style="font-size:11px;color:var(--text3)">${job.posted}</span></div>`}
+        <div class="card-top">
+          <div class="org-logo" style="background:${job.background}">${job.logo}</div>
+          <div class="job-info">
+            <div class="job-title">${job.title}</div>
+            <div class="job-org">${job.organization}</div>
+          </div>
+        </div>
+        <div class="job-desc">${job.description}</div>
+        <div class="job-tags">
+          ${job.tags.map(tag => {
+            let tagClass = 'tag-gov';
+            if (tag.includes('أممي') || tag.includes('منظمة أممية')) tagClass = 'tag-org';
+            if (tag.includes('📍')) tagClass = 'tag-location';
+            if (tag.includes('⏰') || tag.includes('📄')) tagClass = 'tag-type';
+            if (tag.includes('📅')) tagClass = 'tag-deadline';
+            if (tag.includes('💻')) tagClass = 'tag-hybrid';
+            return `<span class="tag ${tagClass}">${tag}</span>`;
+          }).join('')}
+        </div>
+        <div class="card-bottom">
+          <div class="card-meta">
+            ${job.meta.map(m => `<span class="meta-item">${m}</span>`).join('')}
+          </div>
+          <div class="card-actions">
+            <button class="save-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveJob(${job.id}, this)">${isSaved ? '✓ محفوظة' : 'حفظ'}</button>
+            <button class="apply-btn" onclick="openApplyModal(${job.id})">تقديم الآن ←</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleSaveJob(jobId, btn) {
+  const job = jobsDatabase.find(j => j.id === jobId);
+  const index = savedJobs.findIndex(j => j.id === jobId);
+  
+  if (index > -1) {
+    savedJobs.splice(index, 1);
+    btn.classList.remove('saved');
+    btn.textContent = 'حفظ';
+  } else {
+    savedJobs.push(job);
+    btn.classList.add('saved');
+    btn.textContent = '✓ محفوظة';
+  }
+}
+
+function filterJobs(filterValue) {
+  const chips = document.querySelectorAll('.filter-chip');
+  chips.forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  if (filterValue === 'all') {
+    filteredJobs = [...jobsDatabase];
+  } else {
+    filteredJobs = jobsDatabase.filter(job => {
+      if (filterValue === 'government') return job.type === 'government';
+      if (filterValue === 'un') return job.type === 'un';
+      if (filterValue === 'international') return job.type === 'international';
+      if (filterValue === 'fulltime') return job.employment === 'fulltime';
+      if (filterValue === 'parttime') return job.employment === 'parttime';
+      if (filterValue === 'remote') return job.employment === 'remote' || job.location.includes('عن بُعد');
+      return true;
+    });
+  }
+  
+  renderJobs();
+}
+
+function performSearch() {
+  const searchText = document.getElementById('search-input').value.toLowerCase();
+  const location = document.getElementById('location-select').value;
+  
+  filteredJobs = jobsDatabase.filter(job => {
+    const matchesSearch = job.title.includes(searchText) || 
+                         job.organization.includes(searchText) ||
+                         job.description.includes(searchText);
+    const matchesLocation = location === 'كل المحافظات' || job.location === location;
+    return matchesSearch && matchesLocation;
+  });
+  
+  renderJobs();
+}
+
+function sortJobs(sortBy) {
+  if (sortBy === 'newest') {
+    filteredJobs.sort((a, b) => 0);
+  } else if (sortBy === 'salary') {
+    filteredJobs.sort((a, b) => {
+      const salaryA = parseInt(a.salary.match(/\d+/)?.[0] || 0);
+      const salaryB = parseInt(b.salary.match(/\d+/)?.[0] || 0);
+      return salaryB - salaryA;
+    });
+  } else if (sortBy === 'deadline') {
+    filteredJobs.sort((a, b) => a.deadline.localeCompare(b.deadline));
+  } else if (sortBy === 'views') {
+    filteredJobs.sort((a, b) => b.views - a.views);
+  }
+  
+  renderJobs();
+}
+
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletter-email').value;
+  if (email) {
+    alert('شكراً للاشتراك! سيتم إرسال أحدث الوظائف إلى بريدك الإلكتروني ✓');
+    document.getElementById('newsletter-email').value = '';
+  } else {
+    alert('الرجاء إدخال بريدك الإلكتروني');
+  }
+}
+
+function openModal(modalId) {
+  document.getElementById(modalId).classList.add('active');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('active');
+}
+
+function openLoginModal() {
+  openModal('loginModal');
+}
+
+function openRegisterModal() {
+  openModal('registerModal');
+}
+
+function openApplyModal(jobId) {
+  const job = jobsDatabase.find(j => j.id === jobId);
+  document.getElementById('applyModal').dataset.jobId = jobId;
+  openModal('applyModal');
+}
+
+function submitLogin() {
+  alert('تم تسجيل الدخول بنجاح! ✓');
+  closeModal('loginModal');
+}
+
+function submitRegister() {
+  alert('تم إنشاء حسابك بنجاح! ✓');
+  closeModal('registerModal');
+}
+
+function submitApplication() {
+  const name = document.getElementById('apply-name').value;
+  const email = document.getElementById('apply-email').value;
+  const phone = document.getElementById('apply-phone').value;
+  
+  if (name && email && phone) {
+    alert(`شكراً ${name}! تم استقبال طلبك بنجاح. سيتم التواصل معك على البريد الإلكتروني ${email} ✓`);
+    closeModal('applyModal');
+    document.getElementById('apply-name').value = '';
+    document.getElementById('apply-email').value = '';
+    document.getElementById('apply-phone').value = '';
+    document.getElementById('apply-message').value = '';
+  } else {
+    alert('الرجاء ملء جميع الحقول المطلوبة');
+  }
+}
+
+function goHome() {
+  filteredJobs = [...jobsDatabase];
+  renderJobs();
+  window.scrollTo(0, 0);
+}
+
+function showSection(section) {
+  if (section === 'about') {
+    alert('عن MorJops:\nمنصة متخصصة في تجميع الوظائف الحكومية السورية من المؤسسات الرسمية والمنظمات الدولية');
+  } else if (section === 'organizations') {
+    alert('الوزارات والجهات المشاركة:\n- وزارة التنمية الاجتماعية والعمل\n- منظمات الأمم المتحدة\n- المنظمات الدولية');
+  }
+}
+
+// ========== INITIALIZATION ==========
+document.addEventListener('DOMContentLoaded', function() {
+  renderJobs();
+});
+</script>
+</body>
+</html>
